@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "586OYQD4Vn5e/IT/lJM8kzA6SHnVTviq1WhTkZUNXRjJS3cPqssjD8HsPByUH1FGQb966JKRoeORtbAQEyqLhQ==",
+  "dgSpecHash": "EGYHw4YBqPIV9ERm/3trEZ9MEDGW+mr2H665hAmtUh16ASObRqaVaXfB1lfguDGUcS0mB2aetKLXL1tzGDZI+w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\damie\\Source\\Repos\\GestCulture\\AppGestCulture\\AppGestCulture.csproj",
+  "projectFilePath": "C:\\Users\\damie\\source\\repos\\GestCultureFinal\\AppGestCulture\\AppGestCulture.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\damie\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.0\\communitytoolkit.mvvm.8.2.0.nupkg.sha512",
     "C:\\Users\\damie\\.nuget\\packages\\googlegson\\2.9.1.1\\googlegson.2.9.1.1.nupkg.sha512",

@@ -37784,11 +37784,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\damie\\Source\\Repos\\GestCulture\\AppGestCulture\\AppGestCulture.csproj",
+      "projectUniqueName": "C:\\Users\\damie\\source\\repos\\GestCultureFinal\\AppGestCulture\\AppGestCulture.csproj",
       "projectName": "AppGestCulture",
-      "projectPath": "C:\\Users\\damie\\Source\\Repos\\GestCulture\\AppGestCulture\\AppGestCulture.csproj",
+      "projectPath": "C:\\Users\\damie\\source\\repos\\GestCultureFinal\\AppGestCulture\\AppGestCulture.csproj",
       "packagesPath": "C:\\Users\\damie\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\damie\\Source\\Repos\\GestCulture\\AppGestCulture\\obj\\",
+      "outputPath": "C:\\Users\\damie\\source\\repos\\GestCultureFinal\\AppGestCulture\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [
