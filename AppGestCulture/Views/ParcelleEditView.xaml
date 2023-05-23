@@ -25,6 +25,9 @@
         <Label Text="Année:"/>
         <Entry Text="{Binding Parcelle.Annee, Mode=TwoWay}" x:Name="Annee" Keyboard="Numeric"/>
 
+        <Label Text="Numéro de téléphone:"/>
+        <Entry Text="{Binding Parcelle.Numero, Mode=TwoWay}" x:Name="Numero" Keyboard="Numeric"/>
+
         <Button x:Name="btnUpdateParcelle" Text="Enregistrer" Command="{Binding btnUpdateParcelle}" Margin="0,20,0,0"/>
 
         <Button x:Name="btnRemoveParcelle" Text="Supprimer" Command="{Binding btnRemoveParcelle}" Margin="0,20,0,0"/>

@@ -5,6 +5,9 @@ using static System.Net.Mime.MediaTypeNames;
 using System.Collections.ObjectModel;
 using SQLiteNetExtensions.Attributes;
 using SQLiteNetExtensionsAsync.Extensions;
+using Java.Security;
+using System.Security.Cryptography;
+using Android.Util;
 
 namespace AppGestCulture.Data
 {
@@ -15,7 +18,10 @@ namespace AppGestCulture.Data
         public Database()
         {
             connection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            //connection.DropTableAsync<Technicien>();
+            /*connection.DropTableAsync<Technicien>();
+            connection.DropTableAsync<Espece>();
+            connection.DropTableAsync<Exploitation>();
+            connection.DropTableAsync<Parcelle>();*/
             connection.CreateTableAsync<Technicien>().Wait();
             connection.CreateTableAsync<Espece>().Wait();
             connection.CreateTableAsync<Exploitation>().Wait();
@@ -34,6 +40,7 @@ namespace AppGestCulture.Data
         }
         public async Task<bool> CheckTechnicienByInfo(string username, string password)
         {
+            password = HashString(password);
             var result = await connection.Table<Technicien>().Where(t => (t.Matricule == username && t.Mdp == password)).ToListAsync();
             return result.Count > 0;
         }
@@ -43,6 +50,8 @@ namespace AppGestCulture.Data
         }
         public async Task<int> InsertTechnicien(Technicien technicien)
         {
+            technicien.Mdp = HashString(technicien.Mdp);
+            Log.Info("myapp", technicien.Mdp);
             return await connection.InsertAsync(technicien);
         }
         public async Task<int> InsertEspece(Espece espece)
@@ -102,6 +111,29 @@ namespace AppGestCulture.Data
         public async Task<Exploitation> GetExploitation(int id_exploitation)
         {
             return await connection.GetWithChildrenAsync<Exploitation>(id_exploitation);
+        }
+
+        static string HashString(string text)
+        {
+            if (String.IsNullOrEmpty(text))
+            {
+                return String.Empty;
+            }
+
+            // Uses SHA256 to create the hash
+            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            {
+                // Convert the string to a byte array first, to be processed
+                byte[] textBytes = System.Text.Encoding.UTF8.GetBytes(text + Constants.Salt);
+                byte[] hashBytes = sha.ComputeHash(textBytes);
+
+                // Convert back to a string, removing the '-' that BitConverter adds
+                string hash = BitConverter
+                    .ToString(hashBytes)
+                    .Replace("-", String.Empty);
+
+                return hash;
+            }
         }
     }
 }

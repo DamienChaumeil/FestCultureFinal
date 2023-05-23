@@ -13,6 +13,7 @@ using System.Windows.Input;
 using static Android.Net.Wifi.WifiEnterpriseConfig;
 using static Android.Provider.CalendarContract;
 using Android.Accounts;
+using System.Text.RegularExpressions;
 
 namespace AppGestCulture.ViewModels
 {
@@ -40,13 +41,23 @@ namespace AppGestCulture.ViewModels
 
         private async Task updateParcelle()
         {
-            MessagingCenter.Send(this, "UpdateParcelle", Parcelle);
+            Regex regex = new Regex(@"^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$");
+            Match match = regex.Match(Parcelle.Numero);
 
-            await customPopAsync(2);
+            if(match.Success) {
+
+                MessagingCenter.Send(this, "UpdateParcelle", Parcelle);
+
+                await customPopAsync(2);
+            }else
+            {
+                App.Current.MainPage.DisplayAlert("Alert", "le numéro de téléphone n'est pas valide (ex:0606060606)", "OK");
+            }
+
         }
         private async Task removeParcelle()
         {
-            if (await App.Current.MainPage.DisplayAlert("Warning", $"Are you sure you want to delete {Parcelle.Code_parc}?", "Yes", "No"))
+            if (await App.Current.MainPage.DisplayAlert("Alert", $"Voulez vous supprimer {Parcelle.Code_parc}?", "Yes", "No"))
             {
                 MessagingCenter.Send(this, "DeleteParcelle", Parcelle);
                 await customPopAsync(2);

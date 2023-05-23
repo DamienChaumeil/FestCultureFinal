@@ -12,7 +12,7 @@
         <Label Text="{Binding Parcelle.Rendement_prev, StringFormat='Rendement prévue: {0}'}" />
         <Label Text="{Binding Parcelle.Rendement_reel, StringFormat='Rendement réel: {0}'}" />
         <Label Text="{Binding Parcelle.Annee, StringFormat='Année: {0}'}" />
-        
+        <Label Text="{Binding Parcelle.Numero, StringFormat='Numéro: {0}'}" />
         <Button x:Name="btnUpdateParcelle" Text="Modifier" Command="{Binding btnUpdateParcelle}" Margin="0,20,0,0"/>
     </StackLayout>
 </ContentPage>

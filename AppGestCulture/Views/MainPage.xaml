@@ -13,9 +13,11 @@
         <Entry Text="{Binding BinUsername}" />
 
         <Label Text="Mot de passe" />
-        <Entry Text="{Binding BinPassword}" IsPassword="True"  />
+        <Entry Text="{Binding BinPassword}" IsPassword="True"/>
+
 
         <Button Text="Se connecter" Command="{Binding BinLoginCommand}" Margin="0,20,0,0"  />
+
 
         <Label Text="{Binding BinErrorMessage}" TextColor="Red" Margin="0,20,0,0"  />
     </StackLayout>

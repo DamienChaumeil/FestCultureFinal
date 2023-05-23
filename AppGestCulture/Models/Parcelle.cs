@@ -27,6 +27,8 @@ public class Parcelle
 
     public string Annee { get; set; }
 
+    public string Numero { get; set; }
+
 
     [ManyToOne]
     public Exploitation Exploitation { get; set; }

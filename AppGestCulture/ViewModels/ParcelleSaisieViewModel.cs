@@ -13,6 +13,8 @@ using System.Windows.Input;
 using static Android.Net.Wifi.WifiEnterpriseConfig;
 using static Android.Provider.CalendarContract;
 using Microsoft.VisualBasic;
+using System.Text.RegularExpressions;
+using Android.App;
 
 namespace AppGestCulture.ViewModels
 {
@@ -56,6 +58,7 @@ namespace AppGestCulture.ViewModels
                 Rendement_prev = 0,
                 Rendement_reel = 0,
                 Annee = date,
+                Numero = "06060606",
             };
         }
 
@@ -85,9 +88,22 @@ namespace AppGestCulture.ViewModels
         }
         private async Task addParcelle()
         {
-            await GetConnection().InsertParcelle(Parcelle);
-            MessagingCenter.Send(this, "AddParcelle", Parcelle);
-            await Navigation.PopAsync();
+            
+            Regex regex = new Regex(@"^(?:(?:\+|00)33[\s.-]{0,3}(?:\(0\)[\s.-]{0,3})?|0)[1-9](?:(?:[\s.-]?\d{2}){4}|\d{2}(?:[\s.-]?\d{3}){2})$");
+            Match match = regex.Match(Parcelle.Numero);
+
+            if (match.Success)
+            {
+                await GetConnection().InsertParcelle(Parcelle);
+                MessagingCenter.Send(this, "AddParcelle", Parcelle);
+                await Navigation.PopAsync();
+            }
+            else
+            {
+                App.Current.MainPage.DisplayAlert("Alert", "le numéro de téléphone n'est pas valide (ex:0606060606)", "OK");
+            }
+
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

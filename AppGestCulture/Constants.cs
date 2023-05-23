@@ -12,6 +12,8 @@ public class Constants
 
     public static string TechnicienMdp = "caribou";
 
+    public static string Salt = "frgzoiahjf";
+
 
     public const SQLiteOpenFlags Flags = SQLiteOpenFlags.ReadWrite | SQLiteOpenFlags.Create | SQLiteOpenFlags.SharedCache;   
 }
